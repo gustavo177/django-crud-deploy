@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+from os import getenv  # Importa la función getenv para obtener variables de entorno del sistema.
+from dotenv import load_dotenv  # Importa la función load_dotenv para cargar variables de entorno desde un archivo .env.
+# Cargar las variables de entorno
+load_dotenv() 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,11 +30,13 @@ SECRET_KEY = 'django-insecure-slg5dhylcr1i+z)46%3q6no6!zs)b1)s#f7e&d0r35nr9iw7mb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+
+# CSRF_TRUSTED_ORIGINS = ['https://*']
+CSRF_TRUSTED_ORIGINS = [os.getenv("DOMINIO")]
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'app',
