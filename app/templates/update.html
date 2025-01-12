@@ -90,6 +90,13 @@
             display: flex;
             justify-content: center;
         }
+        .url-direccion {
+            display: inline-block; /* Permite aplicar text-overflow */
+            max-width: 20ch; /* Limita el ancho a 20 caracteres */
+            overflow: hidden; /* Oculta cualquier texto que exceda el ancho */
+            white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+            text-overflow: ellipsis; /* Agrega puntos suspensivos (...) al final */
+        }
     </style>
 </head>
 <body>
@@ -107,7 +114,7 @@
             <textarea name="descripcion">{{ archivo.descripcion }}</textarea>
 
             <p>Archivo Actual:
-            <a href="{{ archivo.archivo.url }}" target="_blank">{{ archivo.archivo.url }}</a>
+            <a class="url-direccion" href="{{ archivo.archivo.url }}" target="_blank">{{ archivo.archivo.url }}</a>
             </p>
             <div class="centrar">
                 <img src="{{ archivo.archivo.url }}" alt="Vista previa del archivo">
