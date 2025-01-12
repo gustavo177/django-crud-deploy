@@ -185,6 +185,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# # -----------------------------------------
+# Archivos estáticos (CSS, JS) no visibles en /admin
+# Este problema ocurre porque los archivos estáticos no se están sirviendo correctamente en el entorno de producción. Django no sirve archivos estáticos automáticamente en producción; necesitas configurarlos correctamente.
+
+# Solución:
+# Sigue estos pasos para configurar correctamente los archivos estáticos en Azure:
+
+# Ejecuta collectstatic: Ejecuta este comando para recopilar todos los archivos estáticos en la carpeta STATIC_ROOT definida en tu archivo settings.py:
+
+# bash
+# Copiar código
+# python manage.py collectstatic
+# # -----------------------------------------
 # TO-DO add the static files
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
