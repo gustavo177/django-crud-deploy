@@ -150,6 +150,31 @@ DATABASES = {
 #     }
 # }
 
+# # Integrando Azure Blob Storage
+
+# Configuración para integrar Azure Blob Storage en un proyecto de Django.
+STORAGES = {
+    # Configuración para el almacenamiento predeterminado.
+    "default": {
+        # Especifica el backend utilizado para manejar el almacenamiento predeterminado.
+        # En este caso, se utiliza el backend de Azure Storage.
+        "BACKEND": "storages.backends.azure_storage.AzureStorage",
+        # Opciones adicionales para personalizar el comportamiento del almacenamiento.
+        "OPTIONS": {
+            # Tiempo de espera (en segundos) para las conexiones al almacenamiento de Azure.
+            'timeout': 20,
+            # Tiempo (en segundos) durante el cual una URL firmada será válida.
+            'expiration_secs': 500,
+        },
+    },
+    # Configuración para el almacenamiento de archivos estáticos.
+    "staticfiles": {
+        # Especifica el backend utilizado para manejar los archivos estáticos.
+        # En este caso, se utiliza el almacenamiento predeterminado para archivos estáticos de Django.
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -218,3 +243,8 @@ LOGIN_REDIRECT_URL = '/welcome/'  # Redirige después del login (si usas decorad
 # LOGIN_URL = '/login/'            # Redirige aquí si el usuario no está autenticado
 LOGOUT_REDIRECT_URL = '/login/'  # Redirige aquí después del logout
 
+
+# Cargando los archivo en Azure Blob Storage
+AZURE_CONTAINER = os.getenv("AZURE_CONTAINER")
+AZURE_ACCOUNT_NAME = os.getenv("AZURE_ACCOUNT_NAME")
+AZURE_ACCOUNT_KEY =os.getenv("AZURE_ACCOUNT_KEY")
